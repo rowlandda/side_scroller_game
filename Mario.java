@@ -1,4 +1,4 @@
-public class Mario 
+public class Mario
 {
 	//Mario previous pos
 	int prevX;
@@ -23,11 +23,11 @@ public class Mario
 
 	boolean doesCollide(int _x, int _y, int _w, int _h)
 	{
-		if(x + w <= _w)
+		if(x + w <= _x)
 			return false;
 		if(x >= _x + _w)
 			return false;
-		if(y + h >= _h)
+		if(y + h <= _y)
 			return false;
 		if (y >= _y + _h)
 			return false;
@@ -51,6 +51,8 @@ public class Mario
 			Brick b = model.bricks.get(i);
 			if (doesCollide(b.x, b.y, b.w, b.h))
 				System.out.println("Collision!!!!");
+			else
+				System.out.println(" ");
 		}
 	}
 

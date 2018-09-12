@@ -12,7 +12,6 @@ class View extends JPanel
 {
 	Model model;
 	Image[] mario_images;
-	int pos = 0;
 
 	View(Controller c, Model model)
 	{
