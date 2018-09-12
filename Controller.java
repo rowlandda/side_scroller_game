@@ -13,6 +13,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	boolean keyRight;
 	boolean keyUp;
 	boolean keyDown;
+	boolean keySpace;
 	int mouseDownX;
 	int mouseDownY;
 
@@ -59,6 +60,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 			case KeyEvent.VK_LEFT: keyLeft = true; break;
 			case KeyEvent.VK_UP: keyUp = true; break;
 			case KeyEvent.VK_DOWN: keyDown = true; break;
+			case KeyEvent.VK_SPACE: keySpace = true; break;
 			case KeyEvent.VK_S: model.save("map.json"); break;
 			case KeyEvent.VK_L: model.load("map.json"); break;
 		}
@@ -72,6 +74,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 			case KeyEvent.VK_LEFT: keyLeft = false; break;
 			case KeyEvent.VK_UP: keyUp = false; break;
 			case KeyEvent.VK_DOWN: keyDown = false; break;
+			case KeyEvent.VK_SPACE: keySpace = false; break;
 		}
 	}
 
@@ -81,7 +84,22 @@ class Controller implements ActionListener, MouseListener, KeyListener
 
 	void update()
 	{
-		if(keyRight) model.scrollPos++;
-		if(keyLeft) model.scrollPos--;
+		if(keyRight)
+		{
+			model.mario.x += 10;
+			//model.scrollPos++;
+		}
+		if(keyLeft)
+		{
+			model.mario.x -= 10;
+			//model.scrollPos--;
+		}
+		if(keySpace)
+		{
+			if (model.mario.y > 450)
+			{
+				model.mario.vert_vel += -15.1;
+			}
+		}
 	}
 }

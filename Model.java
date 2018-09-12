@@ -8,12 +8,13 @@ class Model
 
 	Model()
 	{
-		mario = new Mario();
+		mario = new Mario(this);
 		bricks = new ArrayList<Brick>();
 	}
 
 	public void update()
 	{
+		mario.update();
 	}
 
 	void addBrick(int x, int y, int w, int h)

@@ -14,7 +14,7 @@ public class Game extends JFrame
 		controller = new Controller(model);
 		view = new View(controller, model);
 		this.setTitle("Rectangle Attack!");
-		this.setSize(500, 500);
+		this.setSize(800, 800);
 		this.setFocusable(true);
 		this.getContentPane().add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,6 +31,13 @@ public class Game extends JFrame
 
 	public void run()
 	{
+		try
+		{
+			Thread.sleep(250);
+		} catch(Exception e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 	while(true)
 	{
 		controller.update();
@@ -47,5 +54,5 @@ public class Game extends JFrame
 			System.exit(1);
 		}
 	}
-}
+    }
 }
