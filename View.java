@@ -46,7 +46,7 @@ class View extends JPanel
 		for(int i = 0; i < model.bricks.size(); i++)
 		{
 			Brick b = model.bricks.get(i);
-			g.drawRect(b.x - model.scrollPos, b.y, b.w, b.h);
+			g.drawRect(b.x, b.y, b.w, b.h);
 		}
 		int marioFrame = (Math.abs(model.mario.x) / 20) % 5;
 		g.drawImage(this.mario_images[marioFrame], model.mario.x, model.mario.y, null);

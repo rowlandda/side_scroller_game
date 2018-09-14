@@ -16,8 +16,34 @@ public class Mario
 		model = m;
 	}
 
-	void lastPosition()
+	void pushOut(Brick b)
 	{
+		//coming from left side
+		if ( prevX <= b.x )
+		{
+			x = b.x - w - 1;
+			return;
+		}
+		//coming from right
+		if ( prevX >= b.x + b.w)
+		{
+			x = b.x + b.w + 1;
+			return;
+		}
+		//coming from bottom
+		if ( prevY >= b.y + b.h)
+		{
+			vert_vel = 0.0;
+			y = b.y + b.h + 1;
+			return;
+		}
+		//coming from top
+        if ( (prevY + h) <= b.y )
+		{
+		    vert_vel = 0.0;
+		    y = b.y - h - 1;
+		    return;
+		}
 
 	}
 
@@ -50,10 +76,15 @@ public class Mario
 		{
 			Brick b = model.bricks.get(i);
 			if (doesCollide(b.x, b.y, b.w, b.h))
-				System.out.println("Collision!!!!");
-			else
-				System.out.println(" ");
+			{
+				pushOut(b);
+			}
 		}
+
+		//get the location information and store it so we can have access to the last position
+		// to help when pushing mario out of the boxes
+        prevX = x;
+		prevY = y;
 	}
 
 

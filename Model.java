@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 class Model
 {
-	int scrollPos;
 	ArrayList<Brick> bricks;
 	Mario mario;
 
