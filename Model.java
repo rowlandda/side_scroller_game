@@ -4,6 +4,8 @@ class Model
 {
 	ArrayList<Brick> bricks;
 	Mario mario;
+	int scrollPos = 0;
+
 
 	Model()
 	{

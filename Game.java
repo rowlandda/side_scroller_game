@@ -13,7 +13,7 @@ public class Game extends JFrame
 		model = new Model();
 		controller = new Controller(model);
 		view = new View(controller, model);
-		this.setTitle("Mario Knockoff");
+		this.setTitle("Mario");
 		this.setSize(800, 800);
 		this.setFocusable(true);
 		this.getContentPane().add(view);

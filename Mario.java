@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public class Mario
 {
 	//Mario previous pos
@@ -9,15 +11,26 @@ public class Mario
 	int w = 60;
 	int h = 95;
 	double vert_vel;
+	int frames_since_last_jump;
 	Model model;
 
 	Mario(Model m)
 	{
 		model = m;
-	}
+		frames_since_last_jump = 0;
 
+	}
+	//if collision with a brick occurs this method pushes mario outside said brick
 	void pushOut(Brick b)
 	{
+		//coming from top
+		if ( (prevY + h) <= b.y )
+		{
+			vert_vel = 0.0;
+			y = b.y - h - 1;
+			frames_since_last_jump = 0;
+			return;
+		}
 		//coming from left side
 		if ( prevX <= b.x )
 		{
@@ -37,16 +50,10 @@ public class Mario
 			y = b.y + b.h + 1;
 			return;
 		}
-		//coming from top
-        if ( (prevY + h) <= b.y )
-		{
-		    vert_vel = 0.0;
-		    y = b.y - h - 1;
-		    return;
-		}
 
 	}
 
+	//checks for a collision between mario sprite and any other rectangle shape
 	boolean doesCollide(int _x, int _y, int _w, int _h)
 	{
 		if(x + w <= _x)
@@ -69,22 +76,32 @@ public class Mario
 		{
 			vert_vel = 0.0;
 			y= 500; // snap back to the ground
+			frames_since_last_jump = 0;
 		}
 
 		//collision detection
-		for (int i = 0; i < this.model.bricks.size(); i++)
+        Iterator<Brick> it = model.bricks.iterator();
+		while (it.hasNext())
 		{
-			Brick b = model.bricks.get(i);
+			Brick b = it.next();
 			if (doesCollide(b.x, b.y, b.w, b.h))
-			{
 				pushOut(b);
-			}
 		}
+		//for (int i = 0; i < this.model.bricks.size(); i++)
+		//{
+		//	Brick b = model.bricks.get(i);
+		//	if (doesCollide(b.x, b.y, b.w, b.h))
+		//	{
+		//		pushOut(b);
+		//	}
+		//}
 
 		//get the location information and store it so we can have access to the last position
 		// to help when pushing mario out of the boxes
         prevX = x;
 		prevY = y;
+		//this variable helps us control when mario is allowed to jump
+		frames_since_last_jump++;
 	}
 
 

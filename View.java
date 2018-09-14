@@ -11,25 +11,25 @@ import java.awt.Color;
 class View extends JPanel
 {
 	Model model;
-	Image[] mario_images;
+	static Image[] mario_images = null;
 
 	View(Controller c, Model model)
 	{
-		mario_images = new Image[5];
 		c.setView(this);
 		this.model = model;
-		try
+		if (mario_images == null)
 		{
-			mario_images[0] = ImageIO.read(new File("mario1.png"));
-			mario_images[1] = ImageIO.read(new File("mario2.png"));
-			mario_images[2] = ImageIO.read(new File("mario3.png"));
-			mario_images[3] = ImageIO.read(new File("mario4.png"));
-			mario_images[4] = ImageIO.read(new File("mario5.png"));
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace(System.err);
-			System.exit(1);
+			mario_images = new Image[5];
+			try {
+				mario_images[0] = ImageIO.read(new File("mario1.png"));
+				mario_images[1] = ImageIO.read(new File("mario2.png"));
+				mario_images[2] = ImageIO.read(new File("mario3.png"));
+				mario_images[3] = ImageIO.read(new File("mario4.png"));
+				mario_images[4] = ImageIO.read(new File("mario5.png"));
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+				System.exit(1);
+			}
 		}
 	}
 
