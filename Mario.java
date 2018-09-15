@@ -69,6 +69,7 @@ public class Mario
 
 	void update()
 	{
+		model.scrollPos = x - 150;
 		vert_vel += 3.14159;
 		y += vert_vel;
 		//make ground stop Mario from falling
@@ -87,15 +88,6 @@ public class Mario
 			if (doesCollide(b.x, b.y, b.w, b.h))
 				pushOut(b);
 		}
-		//for (int i = 0; i < this.model.bricks.size(); i++)
-		//{
-		//	Brick b = model.bricks.get(i);
-		//	if (doesCollide(b.x, b.y, b.w, b.h))
-		//	{
-		//		pushOut(b);
-		//	}
-		//}
-
 		//get the location information and store it so we can have access to the last position
 		// to help when pushing mario out of the boxes
         prevX = x;

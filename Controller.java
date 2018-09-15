@@ -39,8 +39,8 @@ class Controller implements ActionListener, MouseListener, KeyListener
 
 	public void mouseReleased(MouseEvent e) 
 	{
-		int x1 = mouseDownX;
-		int x2 = e.getX();
+		int x1 = mouseDownX + model.scrollPos;
+		int x2 = e.getX() + model.scrollPos;
 		int y1 = mouseDownY;
 		int y2 = e.getY();
 		int left = Math.min(x1, x2);
@@ -98,7 +98,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 		{
 		    if (model.mario.frames_since_last_jump < 5)
 			{
-				model.mario.vert_vel += -12.1;
+				model.mario.vert_vel += -13.1;
 		 	}
 		}
 	}
