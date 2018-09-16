@@ -63,11 +63,14 @@ class View extends JPanel
 	    //clear screen
 		g.setColor(new Color(128, 255, 255));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		//draw background
+		//draw background 4 times
 		g.drawImage(background_image, -model.scrollPos/2 - 150, 0, null);
+		g.drawImage(background_image, -(model.scrollPos/2) + 1610, 0, null);
+		g.drawImage(background_image, -(model.scrollPos/2) + (2*1610), 0, null);
+		g.drawImage(background_image, -(model.scrollPos/2) + (3*1610), 0, null);
 		//draw ground
 		g.setColor(new Color(15, 200, 64));
-		g.fillRect(0, 595, 900, 700);
+		g.fillRect(0, 595, 4000, 700);
 		//draw bricks
 		g.setColor(new Color(0, 0, 0));
 		for(int i = 0; i < model.bricks.size(); i++)
