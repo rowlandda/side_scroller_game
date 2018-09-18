@@ -14,6 +14,7 @@ class View extends JPanel
 	static Image[] mario_images = null;
 	static BufferedImage background_image = null;
 	static BufferedImage brick_image = null;
+	static BufferedImage ground_image = null;
 
 	View(Controller c, Model model)
 	{
@@ -56,6 +57,17 @@ class View extends JPanel
 				System.exit(1);
 			}
 		}
+		if (ground_image == null)
+		{
+			try
+			{
+				ground_image = ImageIO.read(new File("ground.jpg"));
+			} catch (Exception e)
+			{
+				e.printStackTrace(System.err);
+				System.exit(1);
+			}
+		}
 	}
 
 	public void paintComponent(Graphics g)
@@ -69,8 +81,17 @@ class View extends JPanel
 		g.drawImage(background_image, -(model.scrollPos/2) + (2*1610), 0, null);
 		g.drawImage(background_image, -(model.scrollPos/2) + (3*1610), 0, null);
 		//draw ground
-		g.setColor(new Color(15, 200, 64));
+		g.setColor(new Color(200, 77, 40));
 		g.fillRect(0, 595, 4000, 700);
+		//draw mario brick ground for a lot of pixels
+		g.drawImage(ground_image, -model.scrollPos - 150, 595, null);
+		g.drawImage(ground_image, -model.scrollPos + 1200 - 151, 595, null);
+		g.drawImage(ground_image, -model.scrollPos + (2*1200) - 151, 595, null);
+		g.drawImage(ground_image, -model.scrollPos + (3*1200) - 151, 595, null);
+		g.drawImage(ground_image, -model.scrollPos + (4*1200) - 151, 595, null);
+		g.drawImage(ground_image, -model.scrollPos + (5*1200) - 151, 595, null);
+		g.drawImage(ground_image, -model.scrollPos + (6*1200) - 151, 595, null);
+		g.drawImage(ground_image, -model.scrollPos + (7*1200) - 151, 595, null);
 		//draw bricks
 		g.setColor(new Color(0, 0, 0));
 		for(int i = 0; i < model.bricks.size(); i++)
