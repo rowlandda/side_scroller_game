@@ -75,23 +75,15 @@ class View extends JPanel
 	    //clear screen
 		g.setColor(new Color(128, 255, 255));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		//draw background 4 times
-		g.drawImage(background_image, -model.scrollPos/2 - 150, 0, null);
-		g.drawImage(background_image, -(model.scrollPos/2) + 1610, 0, null);
-		g.drawImage(background_image, -(model.scrollPos/2) + (2*1610), 0, null);
-		g.drawImage(background_image, -(model.scrollPos/2) + (3*1610), 0, null);
+		//draw background 15 times
+        for (int i = 0; i < 15; i++)
+            g.drawImage(background_image, -model.scrollPos/2 + (1600*i) - 150, 0, null);
 		//draw ground
 		g.setColor(new Color(200, 77, 40));
 		g.fillRect(0, 595, 4000, 700);
-		//draw mario brick ground for a lot of pixels
-		g.drawImage(ground_image, -model.scrollPos - 150, 595, null);
-		g.drawImage(ground_image, -model.scrollPos + 1200 - 151, 595, null);
-		g.drawImage(ground_image, -model.scrollPos + (2*1200) - 151, 595, null);
-		g.drawImage(ground_image, -model.scrollPos + (3*1200) - 151, 595, null);
-		g.drawImage(ground_image, -model.scrollPos + (4*1200) - 151, 595, null);
-		g.drawImage(ground_image, -model.scrollPos + (5*1200) - 151, 595, null);
-		g.drawImage(ground_image, -model.scrollPos + (6*1200) - 151, 595, null);
-		g.drawImage(ground_image, -model.scrollPos + (7*1200) - 151, 595, null);
+		//draw mario brick ground 15 times
+		for (int i = 0; i < 15; i++)
+            g.drawImage(ground_image, -model.scrollPos + (i*1200)- 151, 595, null);
 		//draw bricks
 		g.setColor(new Color(0, 0, 0));
 		for(int i = 0; i < model.bricks.size(); i++)

@@ -14,7 +14,7 @@ public class Game extends JFrame
 		controller = new Controller(model);
 		view = new View(controller, model);
 		this.setTitle("Mario");
-		this.setSize(800, 800);
+		this.setSize(1200, 800);
 		this.setFocusable(true);
 		this.getContentPane().add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
