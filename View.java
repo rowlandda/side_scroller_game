@@ -78,7 +78,13 @@ class View extends JPanel
 			Brick b = model.bricks.get(i);
 			g.drawImage(brick_image, b.x - model.scrollPos, b.y, b.w, b.h, null);
 		}
+		//get the index of the mario animation array
 		int marioFrame = (Math.abs(model.mario.x) / 20) % 5;
-		g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos, model.mario.y, null);
+		//if going left flip the mario image
+		if (model.mario.left)
+            g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos + model.mario.w, model.mario.y, -model.mario.w, model.mario.h, null);
+		else
+			g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos, model.mario.y, model.mario.w, model.mario.h, null);
+
 	}
 }

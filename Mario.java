@@ -5,13 +5,13 @@ public class Mario
 	//Mario previous pos
 	int prevX;
 	int prevY;
-
 	int x;
 	int y;
 	int w = 60;
 	int h = 95;
 	double vert_vel;
 	int frames_since_last_jump;
+	boolean left = false;
 	Model model;
 
 	Mario(Model m)
