@@ -31,6 +31,13 @@ public class Mario
 			frames_since_last_jump = 0;
 			return;
 		}
+		//coming from bottom
+		if ( prevY >= b.y + b.h)
+		{
+			vert_vel = 0.0;
+			y = b.y + b.h + 1;
+			return;
+		}
 		//coming from left side
 		if ( prevX <= b.x )
 		{
@@ -43,14 +50,6 @@ public class Mario
 			x = b.x + b.w + 1;
 			return;
 		}
-		//coming from bottom
-		if ( prevY >= b.y + b.h)
-		{
-			vert_vel = 0.0;
-			y = b.y + b.h + 1;
-			return;
-		}
-
 	}
 
 	//checks for a collision between mario sprite and any other rectangle shape
