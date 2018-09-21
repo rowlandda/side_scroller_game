@@ -1,6 +1,7 @@
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class Brick
+public class Brick extends Sprite
 {
 	int x;
 	int y;
@@ -15,6 +16,17 @@ public class Brick
 		h = _h;
 	}
 
+	public void update()
+	{
+
+	}
+
+	public void draw(Graphics g)
+	{
+
+	}
+
+	//create brick from a json representation of one
 	Brick(Json ob)
 	{
 		x = (int)ob.getLong("x");
@@ -22,8 +34,8 @@ public class Brick
 		w = (int)ob.getLong("w");
 		h = (int)ob.getLong("h");
 	}
-
-	Json marshall()
+	//save brick position data as json file
+	public Json marshall()
 	{
 		Json ob = Json.newObject();
 		ob.add("x", x);

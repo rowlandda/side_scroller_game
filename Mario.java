@@ -1,6 +1,7 @@
+import java.awt.*;
 import java.util.Iterator;
 
-public class Mario
+public class Mario extends Sprite
 {
 	//Mario previous pos
 	int prevX;
@@ -66,7 +67,7 @@ public class Mario
 		return true;
 	}
 
-	void update()
+	public void update()
 	{
 		model.scrollPos = x - 150;
 		vert_vel += 3.14159;
@@ -93,6 +94,16 @@ public class Mario
 		prevY = y;
 		//this variable helps us control when mario is allowed to jump
 		frames_since_last_jump++;
+	}
+
+	public void draw(Graphics g)
+	{
+
+	}
+
+	public Json marshall()
+	{
+		return Json.newObject();
 	}
 
 
