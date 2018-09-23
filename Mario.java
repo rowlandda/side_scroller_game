@@ -1,24 +1,40 @@
 import java.awt.*;
 import java.util.Iterator;
+import javax.imageio.ImageIO;
+import java.io.File;
 
 public class Mario extends Sprite
 {
 	//Mario previous pos
 	int prevX;
 	int prevY;
-	int x;
-	int y;
-	int w = 60;
-	int h = 95;
 	double vert_vel;
 	int frames_since_last_jump;
 	boolean left = false;
+	static Image[] mario_images = null;
 	Model model;
 
 	Mario(Model m)
 	{
 		model = m;
 		frames_since_last_jump = 0;
+		w = 60;
+		h = 95;
+		if (mario_images == null)
+		{
+			mario_images = new Image[5];
+			try
+			{
+				mario_images[0] = ImageIO.read(new File("mario1.png"));
+				mario_images[1] = ImageIO.read(new File("mario2.png"));
+				mario_images[2] = ImageIO.read(new File("mario3.png"));
+				mario_images[3] = ImageIO.read(new File("mario4.png"));
+				mario_images[4] = ImageIO.read(new File("mario5.png"));
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+				System.exit(1);
+			}
+		}
 
 	}
 	//if collision with a brick occurs this method pushes mario outside said brick
@@ -53,20 +69,6 @@ public class Mario extends Sprite
 		}
 	}
 
-	//checks for a collision between mario sprite and any other rectangle shape
-	boolean doesCollide(int _x, int _y, int _w, int _h)
-	{
-		if(x + w <= _x)
-			return false;
-		if(x >= _x + _w)
-			return false;
-		if(y + h <= _y)
-			return false;
-		if (y >= _y + _h)
-			return false;
-		return true;
-	}
-
 	public void update()
 	{
 		model.scrollPos = x - 150;
@@ -86,7 +88,9 @@ public class Mario extends Sprite
 		{
 			Brick b = it.next();
 			if (doesCollide(b.x, b.y, b.w, b.h))
+			{
 				pushOut(b);
+			}
 		}
 		//get the location information and store it so we can have access to the last position
 		// to help when pushing mario out of the boxes
@@ -98,6 +102,13 @@ public class Mario extends Sprite
 
 	public void draw(Graphics g)
 	{
+		//get the index of the mario animation array
+		int marioFrame = (Math.abs(x) / 20) % 5;
+		//if going left flip the mario image
+		if (left)
+			g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos + model.mario.w, model.mario.y, -model.mario.w, model.mario.h, null);
+		else
+			g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos, model.mario.y, model.mario.w, model.mario.h, null);
 
 	}
 

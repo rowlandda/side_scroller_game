@@ -11,7 +11,6 @@ import java.awt.Color;
 class View extends JPanel
 {
 	Model model;
-	static Image[] mario_images = null;
 	static BufferedImage background_image = null;
 	static BufferedImage brick_image = null;
 	static BufferedImage ground_image = null;
@@ -20,21 +19,6 @@ class View extends JPanel
 	{
 		c.setView(this);
 		this.model = model;
-		if (mario_images == null)
-		{
-			mario_images = new Image[5];
-			try
-			{
-				mario_images[0] = ImageIO.read(new File("mario1.png"));
-				mario_images[1] = ImageIO.read(new File("mario2.png"));
-				mario_images[2] = ImageIO.read(new File("mario3.png"));
-				mario_images[3] = ImageIO.read(new File("mario4.png"));
-				mario_images[4] = ImageIO.read(new File("mario5.png"));
-			} catch (Exception e) {
-				e.printStackTrace(System.err);
-				System.exit(1);
-			}
-		}
 		if (background_image == null)
 		{
 			try
@@ -91,13 +75,6 @@ class View extends JPanel
 			Brick b = model.bricks.get(i);
 			g.drawImage(brick_image, b.x - model.scrollPos, b.y, b.w, b.h, null);
 		}
-		//get the index of the mario animation array
-		int marioFrame = (Math.abs(model.mario.x) / 20) % 5;
-		//if going left flip the mario image
-		if (model.mario.left)
-            g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos + model.mario.w, model.mario.y, -model.mario.w, model.mario.h, null);
-		else
-			g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos, model.mario.y, model.mario.w, model.mario.h, null);
-
+		model.mario.draw(g);
 	}
 }
