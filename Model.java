@@ -22,30 +22,38 @@ class Model
 			s.update();
 		}
 	}
-
+    //load sprites from json formatted file
 	void unmarshall(Json ob)
 	{
-		//sprites.clear();
-		//Json json_sprites = ob.get("sprites");
-		//for (int i = 0; i < sprites.size(); i++)
-		//{
-		//	Json j = json_sprites.get(i);
-		//	Sprite s = new Sprite(j);
-		//	sprites.add(s);
-		//}
+		sprites.clear();
+		Json json_sprites = ob.get("sprites");
+		for (int i = 0; i < json_sprites.size(); i++)
+		{
+			Json j = json_sprites.get(i);
+			if (j.get("name").equals("mario"))
+			{
+				Mario m = new Mario(this);
+				sprites.add(m);
+			}
+			else
+			{
+				Brick b = new Brick(j);
+				sprites.add(b);
+			}
+		}
 	}
-
+	//convert all current sprite locations to Json file
 	Json marshall()
 	{
 		Json ob = Json.newObject();
-//		Json json_sprites = Json.newList();
-//		ob.add("sprites", json_sprites);
-//		for (int i = 0; i < sprites.size(); i++)
-//		{
-//			Sprite s = sprites.get(i);
-//			Json j = s.marshall();
-//			sprites.add(j);
-//		}
+		Json json_sprites = Json.newList();
+		ob.add("sprites", json_sprites);
+		for (int i =0 ; i < sprites.size(); i++)
+		{
+			Sprite s = sprites.get(i);
+			System.out.println(s.name);
+            json_sprites.add(s.marshall());
+		}
 		return ob;
 	}
 

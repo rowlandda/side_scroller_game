@@ -21,7 +21,7 @@ public class Game extends JFrame
 		this.setVisible(true);
 		view.addMouseListener(controller);
 		this.addKeyListener(controller);
-		//model.load("map.json"); <--- uncomment to load map automatically
+		//model.load("map.json");
 	}
 
 	public static void main(String[] args)

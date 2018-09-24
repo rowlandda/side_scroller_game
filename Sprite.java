@@ -5,6 +5,9 @@ public abstract class Sprite {
     int y;
     int w;
     int h;
+    String name;
+
+    public Sprite() {;}
 
     //checks for a collision between sprite and any other rectangle shape
     public boolean doesCollide(int _x, int _y, int _w, int _h)
@@ -26,5 +29,23 @@ public abstract class Sprite {
 
     public abstract void draw(Graphics g);
 
-    public abstract Json marshall();
+    public Sprite(Json ob)
+    {
+        name = ob.getString("name");
+        x = (int)ob.getLong("x");
+        y = (int)ob.getLong("y");
+        w = (int)ob.getLong("w");
+        h = (int)ob.getLong("h");
+    }
+
+    public Json marshall()
+    {
+        Json ob = Json.newObject();
+        ob.add("name", name);
+        ob.add("x", x);
+        ob.add("y", y);
+        ob.add("w", w);
+        ob.add("h", h);
+        return ob;
+    }
 }

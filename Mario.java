@@ -16,10 +16,13 @@ public class Mario extends Sprite
 
 	Mario(Model m)
 	{
-		model = m;
-		frames_since_last_jump = 0;
+		name = "mario";
+		x = 0;
+		y = 0;
 		w = 60;
 		h = 95;
+		model = m;
+		frames_since_last_jump = 0;
 		if (mario_images == null)
 		{
 			mario_images = new Image[5];
@@ -36,6 +39,10 @@ public class Mario extends Sprite
 			}
 		}
 
+	}
+	Mario(Json ob)
+	{
+		super(ob);
 	}
 	//if collision with a sprite occurs and you want mario to not clip into it
 	// use this method to keep him out
@@ -112,13 +119,6 @@ public class Mario extends Sprite
 			g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos, model.mario.y, model.mario.w, model.mario.h, null);
 
 	}
-
-	public Json marshall()
-	{
-		return Json.newObject();
-	}
-
-
 }
 
 
