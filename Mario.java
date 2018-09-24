@@ -37,34 +37,35 @@ public class Mario extends Sprite
 		}
 
 	}
-	//if collision with a brick occurs this method pushes mario outside said brick
-	void pushOut(Brick b)
+	//if collision with a sprite occurs and you want mario to not clip into it
+	// use this method to keep him out
+	void pushOut(Sprite s)
 	{
 		//coming from top
-		if ( (prevY + h) <= b.y )
+		if ( (prevY + h) <= s.y )
 		{
 			vert_vel = 0.0;
-			y = b.y - h - 1;
+			y = s.y - h - 1;
 			frames_since_last_jump = 0;
 			return;
 		}
 		//coming from bottom
-		if ( prevY >= b.y + b.h)
+		if ( prevY >= s.y + s.h)
 		{
 			vert_vel = 0.0;
-			y = b.y + b.h + 1;
+			y = s.y + s.h + 1;
 			return;
 		}
 		//coming from left side
-		if ( prevX <= b.x )
+		if ( prevX <= s.x )
 		{
-			x = b.x - w - 1;
+			x = s.x - w - 1;
 			return;
 		}
 		//coming from right
-		if ( prevX >= b.x + b.w)
+		if ( prevX >= s.x + s.w)
 		{
-			x = b.x + b.w + 1;
+			x = s.x + s.w + 1;
 			return;
 		}
 	}
@@ -83,13 +84,13 @@ public class Mario extends Sprite
 		}
 
 		//collision detection
-        Iterator<Brick> it = model.bricks.iterator();
+        Iterator<Sprite> it = model.sprites.iterator();
 		while (it.hasNext())
 		{
-			Brick b = it.next();
-			if (doesCollide(b.x, b.y, b.w, b.h))
+			Sprite s = it.next();
+			if ( (doesCollide(s.x, s.y, s.w, s.h)) && (s.isABrick()) )
 			{
-				pushOut(b);
+				pushOut(s);
 			}
 		}
 		//get the location information and store it so we can have access to the last position

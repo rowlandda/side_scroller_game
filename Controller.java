@@ -47,7 +47,8 @@ class Controller implements ActionListener, MouseListener, KeyListener
 		int right = Math.max(x1, x2);
 		int top = Math.min(y1, y2);
 		int bottom = Math.max(y1, y2);
-		model.addBrick(left, top, right - left, bottom - top);
+		Brick b = new Brick(left, top, right - left, bottom - top, model);
+		model.sprites.add(b);
 	}
 	public void mouseEntered(MouseEvent e) {    }
 	public void mouseExited(MouseEvent e) {    }

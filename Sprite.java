@@ -20,6 +20,8 @@ public abstract class Sprite {
         return true;
     }
 
+    public boolean isABrick() { return false; }
+
     public abstract void update();
 
     public abstract void draw(Graphics g);

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 class Model
 {
-	ArrayList<Brick> bricks;
+	ArrayList<Sprite> sprites;
 	Mario mario;
 	int scrollPos = 0;
 
@@ -10,43 +10,42 @@ class Model
 	Model()
 	{
 		mario = new Mario(this);
-		bricks = new ArrayList<Brick>();
+		sprites = new ArrayList<>();
+		sprites.add(mario);
 	}
 
 	public void update()
 	{
-		mario.update();
-	}
-
-	void addBrick(int x, int y, int w, int h)
-	{
-		Brick b = new Brick(x, y, w, h);
-		bricks.add(b);
+		for (int i = 0; i < sprites.size(); i++)
+		{
+			Sprite s = sprites.get(i);
+			s.update();
+		}
 	}
 
 	void unmarshall(Json ob)
 	{
-		bricks.clear();
-		Json json_bricks = ob.get("bricks");
-		for (int i = 0; i < json_bricks.size(); i++)
-		{
-			Json j = json_bricks.get(i);
-			Brick b = new Brick(j);
-			bricks.add(b);
-		}
+		//sprites.clear();
+		//Json json_sprites = ob.get("sprites");
+		//for (int i = 0; i < sprites.size(); i++)
+		//{
+		//	Json j = json_sprites.get(i);
+		//	Sprite s = new Sprite(j);
+		//	sprites.add(s);
+		//}
 	}
 
 	Json marshall()
 	{
 		Json ob = Json.newObject();
-		Json json_bricks = Json.newList();
-		ob.add("bricks", json_bricks);
-		for (int i = 0; i < bricks.size(); i++)
-		{
-			Brick b = bricks.get(i);
-			Json j = b.marshall();
-			json_bricks.add(j);
-		}
+//		Json json_sprites = Json.newList();
+//		ob.add("sprites", json_sprites);
+//		for (int i = 0; i < sprites.size(); i++)
+//		{
+//			Sprite s = sprites.get(i);
+//			Json j = s.marshall();
+//			sprites.add(j);
+//		}
 		return ob;
 	}
 
