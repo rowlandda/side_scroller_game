@@ -10,7 +10,6 @@ public class Mario extends Sprite
 	int prevY;
 	double vert_vel;
 	int frames_since_last_jump;
-	boolean left = false;
 	static Image[] mario_images = null;
 	Model model;
 
@@ -124,15 +123,21 @@ public class Mario extends Sprite
 		frames_since_last_jump++;
 	}
 
+	public void jump()
+	{
+        if (frames_since_last_jump < 5)
+            vert_vel += -13.1;
+	}
+
 	public void draw(Graphics g)
 	{
 		//get the index of the mario animation array
 		int marioFrame = (Math.abs(x) / 20) % 5;
 		//if going left flip the mario image
 		if (left)
-			g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos + model.mario.w, model.mario.y, -model.mario.w, model.mario.h, null);
+			g.drawImage(this.mario_images[marioFrame], x - model.scrollPos + w, y, -w, h, null);
 		else
-			g.drawImage(this.mario_images[marioFrame], model.mario.x - model.scrollPos, model.mario.y, model.mario.w, model.mario.h, null);
+			g.drawImage(this.mario_images[marioFrame], x - model.scrollPos, y, w, h, null);
 
 	}
 }

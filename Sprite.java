@@ -6,6 +6,7 @@ public abstract class Sprite {
     int w;
     int h;
     String name;
+    boolean left = false;
 
     public Sprite() {;}
 
@@ -48,4 +49,6 @@ public abstract class Sprite {
         ob.add("h", h);
         return ob;
     }
+    //so mario can override it to jump
+    public void jump() {;}
 }

@@ -11,6 +11,7 @@ public class Game extends JFrame
 
 	public Game()
 	{
+	    //set mario program icon
 	    ImageIcon icon = new ImageIcon("marioIcon.png");
 	    setIconImage(icon.getImage());
 		model = new Model();
@@ -24,7 +25,7 @@ public class Game extends JFrame
 		this.setVisible(true);
 		view.addMouseListener(controller);
 		this.addKeyListener(controller);
-		//model.load("map.json");
+		model.load("map.json");
 	}
 
 	public static void main(String[] args)

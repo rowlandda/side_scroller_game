@@ -3,15 +3,15 @@ import java.util.ArrayList;
 class Model
 {
 	ArrayList<Sprite> sprites;
-	Mario mario;
+//	Mario mario;
 	int scrollPos = 0;
 
 
 	Model()
 	{
-		mario = new Mario(this);
+//		mario = new Mario(this);
 		sprites = new ArrayList<>();
-		sprites.add(mario);
+//		sprites.add(mario);
 	}
 
 	public void update()
@@ -68,6 +68,19 @@ class Model
 	{
 		Json loaded = Json.load(filename);
 		unmarshall(loaded);
+	}
+
+	Sprite getMario()
+	{
+		for (int i = 0; i < sprites.size(); i++)
+		{
+			if ( sprites.get(i).name.equals("mario") )
+			{
+				Sprite s = sprites.get(i);
+				return s;
+			}
+		}
+		return null;
 	}
 
 }
