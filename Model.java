@@ -30,14 +30,16 @@ class Model
 		for (int i = 0; i < json_sprites.size(); i++)
 		{
 			Json j = json_sprites.get(i);
-			if (j.get("name").equals("mario"))
+			if (j.getString("name").equals("mario"))
 			{
-				Mario m = new Mario(this);
+				Mario m = new Mario(j);
+				m.model = this;
 				sprites.add(m);
 			}
 			else
 			{
 				Brick b = new Brick(j);
+				b.model = this;
 				sprites.add(b);
 			}
 		}

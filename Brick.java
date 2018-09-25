@@ -32,6 +32,17 @@ public class Brick extends Sprite
 	Brick(Json ob)
 	{
 		super(ob);
+		if (brick_image == null)
+		{
+			try
+			{
+				brick_image = ImageIO.read(new File("bricks.png"));
+			} catch (Exception e)
+			{
+				e.printStackTrace(System.err);
+				System.exit(1);
+			}
+		}
 	}
 
 	@Override
