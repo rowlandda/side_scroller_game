@@ -1,4 +1,4 @@
-import javax.swing.JFrame;
+import javax.swing.*;
 import java.awt.Toolkit;
 
 public class Game extends JFrame
@@ -7,9 +7,12 @@ public class Game extends JFrame
 	Controller controller;
 	Model model;
 	View view;
+	ImageIcon icon;
 
 	public Game()
 	{
+	    ImageIcon icon = new ImageIcon("marioIcon.png");
+	    setIconImage(icon.getImage());
 		model = new Model();
 		controller = new Controller(model);
 		view = new View(controller, model);

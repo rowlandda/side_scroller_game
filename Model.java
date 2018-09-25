@@ -51,7 +51,6 @@ class Model
 		for (int i =0 ; i < sprites.size(); i++)
 		{
 			Sprite s = sprites.get(i);
-			System.out.println(s.name);
             json_sprites.add(s.marshall());
 		}
 		return ob;
