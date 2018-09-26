@@ -96,7 +96,7 @@ public class Coinblock extends Sprite
     void coinOut(Sprite s)
     {
         //coming from under the sprite
-        if ( s.prevY <= y + h - 1)
+        if ( s.prevY <= y + h - 2)
         {
            coins_left--;
         }
