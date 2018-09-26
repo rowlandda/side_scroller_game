@@ -5,9 +5,11 @@ public abstract class Sprite {
     int y;
     int w;
     int h;
+    int prevY;
     String name;
     boolean left = false;
 
+    //generic empty constructor without params so I can make whatever type of constructor I want
     public Sprite() {;}
 
     //checks for a collision between sprite and any other rectangle shape
@@ -25,6 +27,10 @@ public abstract class Sprite {
     }
 
     public boolean isABrick() { return false; }
+
+    public boolean isAMario() { return false; }
+
+    public boolean isACoinblock() { return false; }
 
     public abstract void update();
 

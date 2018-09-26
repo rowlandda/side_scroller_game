@@ -3,15 +3,12 @@ import java.util.ArrayList;
 class Model
 {
 	ArrayList<Sprite> sprites;
-//	Mario mario;
 	int scrollPos = 0;
 
 
 	Model()
 	{
-//		mario = new Mario(this);
 		sprites = new ArrayList<>();
-//		sprites.add(mario);
 	}
 
 	public void update()
@@ -30,17 +27,25 @@ class Model
 		for (int i = 0; i < json_sprites.size(); i++)
 		{
 			Json j = json_sprites.get(i);
+			//create mario
 			if (j.getString("name").equals("mario"))
 			{
 				Mario m = new Mario(j);
 				m.model = this;
 				sprites.add(m);
 			}
-			else
+			//create the bricks
+			if (j.getString("name").equals("brick"))
 			{
 				Brick b = new Brick(j);
 				b.model = this;
 				sprites.add(b);
+			}
+			if (j.getString("name").equals("coinblock"))
+			{
+				Coinblock c = new Coinblock(j);
+				c.model = this;
+				sprites.add(c);
 			}
 		}
 	}
@@ -70,6 +75,7 @@ class Model
 		unmarshall(loaded);
 	}
 
+	//returns the mario sprite so the controller class can get access to him
 	Sprite getMario()
 	{
 		for (int i = 0; i < sprites.size(); i++)

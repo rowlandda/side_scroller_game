@@ -47,7 +47,7 @@ class View extends JPanel
 	    //clear screen
 		g.setColor(new Color(128, 255, 255));
 		g.fillRect(0, 0, this.getWidth(), this.getHeight());
-		//draw background 15 times
+		//draw background
         for (int i = 0; i < 15; i++)
             g.drawImage(background_image, -model.scrollPos/2 + (1600*i) - 150, 0, null);
 		//draw ground

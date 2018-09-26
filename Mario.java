@@ -59,6 +59,9 @@ public class Mario extends Sprite
 			}
 		}
 	}
+
+	public boolean isAMario() { return true; }
+
 	//if collision with a sprite occurs and you want mario to not clip into it
 	// use this method to keep him out
 	void pushOut(Sprite s)
@@ -110,7 +113,7 @@ public class Mario extends Sprite
 		while (it.hasNext())
 		{
 			Sprite s = it.next();
-			if ( (doesCollide(s.x, s.y, s.w, s.h)) && (s.isABrick()) )
+			if ( (doesCollide(s.x, s.y, s.w, s.h)) && ( (s.isABrick()) || (s.isACoinblock()) ) )
 			{
 				pushOut(s);
 			}
