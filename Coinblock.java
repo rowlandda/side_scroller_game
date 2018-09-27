@@ -101,7 +101,7 @@ public class Coinblock extends Sprite
         frames_since_last_coin++;
 
     }
-
+    //need to fix coins popping out with left to right collision with mario
     void coinOut(Sprite s)
     {
         //coming from under the sprite and we have coins
@@ -111,7 +111,9 @@ public class Coinblock extends Sprite
             frames_since_last_coin = 0;
             Coin c = new Coin(x, y-75, model);
             model.sprites.add(c);
+            //make coin pop out randomly
             c.vert_vel = -18.3;
+            c.horiz_vel = rand.nextDouble() * 16 - 8;
         }
     }
 

@@ -16,6 +16,9 @@ class Model
 		for (int i = 0; i < sprites.size(); i++)
 		{
 			Sprite s = sprites.get(i);
+			//remove coins when they get to bottom of screen
+			if (s.y > 800)
+				sprites.remove(i);
 			s.update();
 		}
 	}

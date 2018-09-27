@@ -13,11 +13,12 @@ public class Coin extends Sprite
 
     Coin(int _x, int _y, Model m)
     {
+        name = "coin";
         x = _x;
         y = _y;
-        model = m;
         w = 75;
         h = 75;
+        model = m;
         vert_vel = 3.14;
         if (coin_image == null)
         {
@@ -43,6 +44,7 @@ public class Coin extends Sprite
     {
         vert_vel += 3.143123;
         y += vert_vel;
+            x += horiz_vel;
     }
 
     @Override
