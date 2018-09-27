@@ -113,7 +113,7 @@ public class Mario extends Sprite
 		while (it.hasNext())
 		{
 			Sprite s = it.next();
-			if ( (doesCollide(s.x, s.y, s.w, s.h)) && ( (s.isABrick()) || (s.isACoinblock()) ) )
+			if ( (doesCollide(s.x, s.y, s.w, s.h)) && (s.isABrick()) )
 			{
 				pushOut(s);
 			}

@@ -10,12 +10,15 @@ public class Coinblock extends Sprite
     static BufferedImage coinblock_empty = null;
     int coins_left;
     Model model;
+    //this takes care of a bug of mario getting more than one coin per bump
+    int frames_since_last_coin;
 
 
     Coinblock(int _x, int _y, Model m)
     {
         name = "coinblock";
         coins_left = 5;
+        frames_since_last_coin = 0;
         x = _x;
         y = _y;
         w = 89;
@@ -50,6 +53,7 @@ public class Coinblock extends Sprite
     {
         super(ob);
         coins_left = 5;
+        frames_since_last_coin = 0;
         if (coinblock_full == null)
         {
             try
@@ -78,6 +82,9 @@ public class Coinblock extends Sprite
     public boolean isACoinblock() { return true; }
 
     @Override
+    public boolean isABrick() { return true; }
+
+    @Override
     public void update()
     {
         Iterator<Sprite> it = model.sprites.iterator();
@@ -85,20 +92,22 @@ public class Coinblock extends Sprite
         {
             Sprite s = it.next();
             //s.y - 2 because mario's pushout() will keep this from ever happening otherwise
-            if ( (doesCollide(s.x, s.y - 2, s.w, s.h)) && (s.isAMario()) )
+            if ((doesCollide(s.x - 2, s.y - 2, s.w, s.h)) && (s.isAMario()))
             {
                 coinOut(s);
             }
         }
+        frames_since_last_coin++;
 
     }
 
     void coinOut(Sprite s)
     {
         //coming from under the sprite
-        if ( s.prevY <= y + h - 2)
+        if ( ( s.prevY < y + h - 2) && (frames_since_last_coin > 5) )
         {
-           coins_left--;
+            coins_left--;
+            frames_since_last_coin = 0;
         }
     }
 
