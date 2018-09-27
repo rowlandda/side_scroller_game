@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Iterator;
+import java.util.Random;
 
 public class Coinblock extends Sprite
 {
@@ -12,6 +13,7 @@ public class Coinblock extends Sprite
     Model model;
     //this takes care of a bug of mario getting more than one coin per bump
     int frames_since_last_coin;
+    static Random rand = new Random();
 
 
     Coinblock(int _x, int _y, Model m)
@@ -87,10 +89,9 @@ public class Coinblock extends Sprite
     @Override
     public void update()
     {
-        Iterator<Sprite> it = model.sprites.iterator();
-        while (it.hasNext())
+        for (int i = 0; i < model.sprites.size(); i++)
         {
-            Sprite s = it.next();
+            Sprite s = model.sprites.get(i);
             //s.y - 2 because mario's pushout() will keep this from ever happening otherwise
             if ((doesCollide(s.x - 2, s.y - 2, s.w, s.h)) && (s.isAMario()))
             {
@@ -103,11 +104,14 @@ public class Coinblock extends Sprite
 
     void coinOut(Sprite s)
     {
-        //coming from under the sprite
-        if ( ( s.prevY < y + h - 2) && (frames_since_last_coin > 5) )
+        //coming from under the sprite and we have coins
+        if ( ( s.prevY < y + h - 2) && (frames_since_last_coin > 5) && (coins_left > 0))
         {
             coins_left--;
             frames_since_last_coin = 0;
+            Coin c = new Coin(x, y-75, model);
+            model.sprites.add(c);
+            c.vert_vel = -18.3;
         }
     }
 
