@@ -79,14 +79,15 @@ class Model
 	}
 
 	//returns the mario sprite so the controller class can get access to him
-	Sprite getMario()
+	Mario getMario()
 	{
 		for (int i = 0; i < sprites.size(); i++)
 		{
 			if ( sprites.get(i).name.equals("mario") )
 			{
 				Sprite s = sprites.get(i);
-				return s;
+				Mario m = (Mario) s;
+				return m;
 			}
 		}
 		return null;

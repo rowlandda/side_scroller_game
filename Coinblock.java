@@ -2,7 +2,6 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.Iterator;
 import java.util.Random;
 
 public class Coinblock extends Sprite
@@ -101,11 +100,12 @@ public class Coinblock extends Sprite
         frames_since_last_coin++;
 
     }
-    //need to fix coins popping out with left to right collision with mario
+
     void coinOut(Sprite s)
     {
-        //coming from under the sprite and we have coins
-        if ( ( s.prevY < y + h - 2) && (frames_since_last_coin > 5) && (coins_left > 0))
+        //make sure we are coming from under the sprite and we have coins
+        if ( ( s.prevY < y + h - 2) && (s.x < x + w) && (s.x + s.w > x) &&
+                (frames_since_last_coin > 5) && (coins_left > 0) )
         {
             coins_left--;
             frames_since_last_coin = 0;

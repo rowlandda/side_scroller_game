@@ -6,6 +6,7 @@ public abstract class Sprite {
     int w;
     int h;
     int prevY;
+    int prevX;
     String name;
     boolean left = false;
 
