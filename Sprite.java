@@ -5,10 +5,8 @@ public abstract class Sprite {
     int y;
     int w;
     int h;
-    int prevY;
-    int prevX;
+    Model model;
     String name;
-    boolean left = false;
 
     //generic empty constructor without params so I can make whatever type of constructor I want
     public Sprite() {;}
@@ -37,8 +35,10 @@ public abstract class Sprite {
 
     public abstract void draw(Graphics g);
 
-    public Sprite(Json ob)
+    //instantiate from JSON representation
+    public Sprite(Json ob, Model m)
     {
+        this.model = m;
         name = ob.getString("name");
         x = (int)ob.getLong("x");
         y = (int)ob.getLong("y");
@@ -46,6 +46,7 @@ public abstract class Sprite {
         h = (int)ob.getLong("h");
     }
 
+    //convert sprite to JSON representation
     public Json marshall()
     {
         Json ob = Json.newObject();

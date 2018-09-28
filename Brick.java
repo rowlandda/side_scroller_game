@@ -6,7 +6,6 @@ import java.io.File;
 public class Brick extends Sprite
 {
 	static BufferedImage brick_image = null;
-	Model model;
 
 	Brick(int _x, int _y, int _w, int _h, Model m)
 	{
@@ -29,9 +28,9 @@ public class Brick extends Sprite
 		}
 	}
 
-	Brick(Json ob)
+	Brick(Json ob, Model m)
 	{
-		super(ob);
+		super(ob, m);
 		if (brick_image == null)
 		{
 			try

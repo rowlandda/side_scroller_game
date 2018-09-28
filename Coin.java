@@ -7,7 +7,6 @@ public class Coin extends Sprite
 {
 
     static BufferedImage coin_image = null;
-    Model model;
     double vert_vel;
     double horiz_vel;
 
@@ -34,9 +33,9 @@ public class Coin extends Sprite
 
     }
 
-    Coin(Json ob)
+    Coin(Json ob, Model m)
     {
-        super(ob);
+        super(ob, m);
     }
 
     @Override

@@ -11,7 +11,8 @@ public class Mario extends Sprite
 	double vert_vel;
 	int frames_since_last_jump;
 	static Image[] mario_images = null;
-	Model model;
+	//to keep track of which way mario is facing
+	boolean left = false;
 
 	Mario(Model m)
 	{
@@ -39,9 +40,10 @@ public class Mario extends Sprite
 		}
 
 	}
-	Mario(Json ob)
+
+	Mario(Json ob, Model m)
 	{
-		super(ob);
+		super(ob, m);
 		frames_since_last_jump = 0;
 		if (mario_images == null)
 		{

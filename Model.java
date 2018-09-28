@@ -16,7 +16,7 @@ class Model
 		for (int i = 0; i < sprites.size(); i++)
 		{
 			Sprite s = sprites.get(i);
-			//remove coins when they get to bottom of screen
+			//remove sprites when they get to bottom of screen, like coins
 			if (s.y > 800)
 				sprites.remove(i);
 			s.update();
@@ -33,21 +33,18 @@ class Model
 			//create mario
 			if (j.getString("name").equals("mario"))
 			{
-				Mario m = new Mario(j);
-				m.model = this;
+				Mario m = new Mario(j, this);
 				sprites.add(m);
 			}
 			//create the bricks
 			if (j.getString("name").equals("brick"))
 			{
-				Brick b = new Brick(j);
-				b.model = this;
+				Brick b = new Brick(j, this);
 				sprites.add(b);
 			}
 			if (j.getString("name").equals("coinblock"))
 			{
-				Coinblock c = new Coinblock(j);
-				c.model = this;
+				Coinblock c = new Coinblock(j, this);
 				sprites.add(c);
 			}
 		}
@@ -90,6 +87,8 @@ class Model
 				return m;
 			}
 		}
+		System.out.println("There's no mario!!!!!!");
+		System.exit(1);
 		return null;
 	}
 
