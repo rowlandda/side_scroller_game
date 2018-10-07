@@ -12,7 +12,7 @@ public class Game extends JFrame
 	public Game()
 	{
 	    //set mario program icon
-	    ImageIcon icon = new ImageIcon("marioIcon.png");
+	    icon = new ImageIcon("marioIcon.png");
 	    setIconImage(icon.getImage());
 		model = new Model();
 		controller = new Controller(model);
