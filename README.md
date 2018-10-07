@@ -4,7 +4,7 @@
 
 <h4>to install...</h4>
 <p>1) Download and install the latest version of 
-<a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">Java SE Development Kit</p>
+<a href="https://www.oracle.com/technetwork/java/javase/downloads/index.html">Java SE Development Kit</a></p>
 <p>1) Place all files in the same directory</p>
 <p>2) Navigate to the directory from your favorite shell</p>
 <p>3) (if on linux) type <code>./build.bash</code>
