@@ -35,6 +35,20 @@ public abstract class Sprite {
 
     public abstract void draw(Graphics g);
 
+    public abstract Sprite cloneme(Sprite sprite, Model newModel);
+
+    //copy constructor
+    public Sprite(Sprite copy, Model newModel)
+    {
+        name = copy.name;
+        x = copy.x;
+        y = copy.y;
+        w = copy.w;
+        h = copy.h;
+        model = newModel;
+
+    }
+
     //instantiate from JSON representation
     public Sprite(Json ob, Model m)
     {

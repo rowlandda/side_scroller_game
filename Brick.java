@@ -28,6 +28,29 @@ public class Brick extends Sprite
 		}
 	}
 
+	Brick(Brick copy, Model newModel)
+	{
+		super(copy, newModel);
+		model = newModel;
+		if (brick_image == null)
+		{
+			try
+			{
+				brick_image = ImageIO.read(new File("bricks.png"));
+			} catch (Exception e)
+			{
+				e.printStackTrace(System.err);
+				System.exit(1);
+			}
+		}
+	}
+
+	public Brick cloneme(Sprite copy, Model newModel)
+	{
+		Brick b = new Brick((Brick)copy, newModel);
+		return b;
+	}
+
 	Brick(Json ob, Model m)
 	{
 		super(ob, m);

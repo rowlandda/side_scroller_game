@@ -13,6 +13,10 @@ public class Mario extends Sprite
 	static Image[] mario_images = null;
 	//to keep track of which way mario is facing
 	boolean left = false;
+	//number of jumps
+	int jumps;
+	//number of coins
+	int coins;
 
 	Mario(Model m)
 	{
@@ -23,6 +27,8 @@ public class Mario extends Sprite
 		h = 95;
 		model = m;
 		frames_since_last_jump = 0;
+		jumps = 0;
+		coins = 0;
 		if (mario_images == null)
 		{
 			mario_images = new Image[5];
@@ -41,10 +47,48 @@ public class Mario extends Sprite
 
 	}
 
+	//copy constructor
+	Mario(Mario copy, Model newModel)
+	{
+	    super(copy, newModel);
+	    prevX = copy.prevX;
+	    prevY = copy.prevY;
+	    vert_vel = copy.vert_vel;
+		frames_since_last_jump = copy.frames_since_last_jump;
+		left = copy.left;
+		jumps = copy.jumps;
+		coins = copy.coins;
+		if (mario_images == null)
+		{
+			mario_images = new Image[5];
+			try
+			{
+				mario_images[0] = ImageIO.read(new File("mario1.png"));
+				mario_images[1] = ImageIO.read(new File("mario2.png"));
+				mario_images[2] = ImageIO.read(new File("mario3.png"));
+				mario_images[3] = ImageIO.read(new File("mario4.png"));
+				mario_images[4] = ImageIO.read(new File("mario5.png"));
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+				System.exit(1);
+			}
+		}
+
+	}
+
+	public Mario cloneme(Sprite copy, Model newModel)
+	{
+		Mario m = new Mario((Mario)copy, newModel);
+		return m;
+	}
+
+	//initialize from json representation
 	Mario(Json ob, Model m)
 	{
 		super(ob, m);
 		frames_since_last_jump = 0;
+		jumps = 0;
+		coins = 0;
 		if (mario_images == null)
 		{
 			mario_images = new Image[5];
@@ -63,6 +107,13 @@ public class Mario extends Sprite
 	}
 
 	public boolean isAMario() { return true; }
+
+	enum Action
+	{
+		run,
+		jump,
+		wait,
+	}
 
 	//if collision with a sprite occurs and you want mario to not clip into it
 	// use this method to keep him out
@@ -109,7 +160,6 @@ public class Mario extends Sprite
 			y= 500; // snap back to the ground
 			frames_since_last_jump = 0;
 		}
-
 		//collision detection
         Iterator<Sprite> it = model.sprites.iterator();
 		while (it.hasNext())
@@ -128,10 +178,30 @@ public class Mario extends Sprite
 		frames_since_last_jump++;
 	}
 
+	public void right()
+	{
+		left = false;
+		model.getMario().x += 10;
+		model.scrollPos++;
+	}
+
+	public void left()
+	{
+		left = true;
+		x -= 10;
+		model.scrollPos--;
+	}
+
 	public void jump()
 	{
         if (frames_since_last_jump < 5)
             vert_vel += -13.1;
+        jumps++;
+	}
+
+	public void waits()
+	{
+		;
 	}
 
 	public void draw(Graphics g)

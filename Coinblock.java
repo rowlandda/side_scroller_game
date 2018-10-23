@@ -48,6 +48,42 @@ public class Coinblock extends Sprite
         }
     }
 
+    //copy constructor
+    Coinblock(Coinblock copy, Model newModel)
+    {
+        super(copy, newModel);
+        coins_left = copy.coins_left;
+        frames_since_last_coin = copy.frames_since_last_coin;
+        model = newModel;
+        if (coinblock_full == null)
+        {
+            try
+            {
+                coinblock_full = ImageIO.read(new File("coinblockfull.png"));
+            } catch (Exception e)
+            {
+                e.printStackTrace(System.err);
+                System.exit(1);
+            }
+        }
+        if (coinblock_empty == null)
+        {
+            try
+            {
+                coinblock_empty = ImageIO.read(new File("coinblockempty.png"));
+            } catch (Exception e)
+            {
+                e.printStackTrace(System.err);
+                System.exit(1);
+            }
+        }
+    }
+
+    public Coinblock cloneme(Sprite copy, Model newModel)
+    {
+        Coinblock c = new Coinblock((Coinblock)copy, newModel);
+        return c;
+    }
 
     Coinblock(Json ob, Model m)
     {
@@ -112,6 +148,7 @@ public class Coinblock extends Sprite
             //add a new coin directly above the coinblock
             Coin c = new Coin(x, y-75, model);
             model.sprites.add(c);
+            m.coins++;
             //make coin pop out randomly
             c.vert_vel = -18.3;
             c.horiz_vel = rand.nextDouble() * 16 - 8;

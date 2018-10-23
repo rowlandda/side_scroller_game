@@ -8,6 +8,7 @@ public class Game extends JFrame
 	Model model;
 	View view;
 	ImageIcon icon;
+	Model model_copy;
 
 	public Game()
 	{

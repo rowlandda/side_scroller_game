@@ -91,15 +91,11 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	{
 		if(keyRight)
 		{
-			model.getMario().left = false;
-			model.getMario().x += 10;
-			model.scrollPos++;
+			model.getMario().right();
 		}
 		if(keyLeft)
 		{
-		    model.getMario().left = true;
-			model.getMario().x -= 10;
-			model.scrollPos--;
+		    model.getMario().left();
 		}
 		if(keySpace)
 		{

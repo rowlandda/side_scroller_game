@@ -11,6 +11,18 @@ class Model
 		sprites = new ArrayList<>();
 	}
 
+	//copy constructor for AI implementation
+	Model(Model copy)
+	{
+		sprites = new ArrayList<Sprite>();
+		for (int i = 0; i < copy.sprites.size(); i++)
+		{
+			Sprite other = copy.sprites.get(i);
+			Sprite clone = other.cloneme(other, this);
+			sprites.add(clone);
+		}
+	}
+
 	public void update()
 	{
 		for (int i = 0; i < sprites.size(); i++)
@@ -37,12 +49,12 @@ class Model
 				sprites.add(m);
 			}
 			//create the bricks
-			if (j.getString("name").equals("brick"))
+			else if (j.getString("name").equals("brick"))
 			{
 				Brick b = new Brick(j, this);
 				sprites.add(b);
 			}
-			if (j.getString("name").equals("coinblock"))
+			else if (j.getString("name").equals("coinblock"))
 			{
 				Coinblock c = new Coinblock(j, this);
 				sprites.add(c);

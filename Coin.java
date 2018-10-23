@@ -33,6 +33,31 @@ public class Coin extends Sprite
 
     }
 
+    Coin(Coin copy, Model newModel)
+    {
+        super(copy, newModel);
+        model = newModel;
+        vert_vel = copy.vert_vel;
+        horiz_vel = copy.horiz_vel;
+        if (coin_image == null)
+        {
+            try
+            {
+                coin_image = ImageIO.read(new File("coin.png"));
+            } catch (Exception e)
+            {
+                e.printStackTrace(System.err);
+                System.exit(1);
+            }
+        }
+    }
+
+    public Coin cloneme(Sprite copy, Model newModel)
+    {
+        Coin c = new Coin((Coin)copy, newModel);
+        return c;
+    }
+
     Coin(Json ob, Model m)
     {
         super(ob, m);
@@ -43,7 +68,7 @@ public class Coin extends Sprite
     {
         vert_vel += 3.143123;
         y += vert_vel;
-            x += horiz_vel;
+        x += horiz_vel;
     }
 
     @Override
