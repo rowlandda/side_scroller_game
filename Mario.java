@@ -108,13 +108,6 @@ public class Mario extends Sprite
 
 	public boolean isAMario() { return true; }
 
-	enum Action
-	{
-		run,
-		jump,
-		wait,
-	}
-
 	//if collision with a sprite occurs and you want mario to not clip into it
 	// use this method to keep him out
 	void pushOut(Sprite s)
@@ -181,7 +174,7 @@ public class Mario extends Sprite
 	public void right()
 	{
 		left = false;
-		model.getMario().x += 10;
+		x += 10;
 		model.scrollPos++;
 	}
 
@@ -199,9 +192,12 @@ public class Mario extends Sprite
         jumps++;
 	}
 
-	public void waits()
+	public void run_and_jump()
 	{
-		;
+		left = false;
+		x += 10;
+		model.scrollPos++;
+		jump();
 	}
 
 	public void draw(Graphics g)

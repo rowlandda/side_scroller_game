@@ -23,6 +23,52 @@ class Model
 		}
 	}
 
+	enum Action
+	{
+		run,
+		jump,
+		run_and_jump,
+	}
+
+	void doAction(Action a)
+	{
+		if (a == Action.run)
+			getMario().right();
+		if (a == Action.jump)
+			getMario().jump();
+		if (a == Action.run_and_jump)
+			getMario().run_and_jump();
+	}
+	//creates a copy of the model and trys all the possible actions from doAction
+	//assigning a score for each.  the best score is the chosen path of the AI
+	double evaluateAction(Action action, int depth)
+	{
+		int d, k;
+		d = 32;
+		k = 5;
+		// Evaluate the state
+		if(depth >= d)
+			return getMario().x + 5000 * getMario().coins - 2 * getMario().jumps;
+
+		// Simulate the action
+		Model copy = new Model(this); // uses the copy constructor
+		copy.doAction(action);
+		copy.update(); // advance simulated time
+
+		// Recurse
+		if(depth % k != 0)
+			return copy.evaluateAction(action, depth + 1);
+		else
+		{
+			double best = copy.evaluateAction(Action.run, depth + 1);
+			best = Math.max(best,
+					copy.evaluateAction(Action.jump, depth + 1));
+			best = Math.max(best,
+					copy.evaluateAction(Action.run_and_jump, depth + 1));
+			return best;
+		}
+	}
+
 	public void update()
 	{
 		for (int i = 0; i < sprites.size(); i++)

@@ -87,19 +87,35 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	{
 	}
 
+//	void update()
+//	{
+//		if(keyRight)
+//		{
+//			model.getMario().right();
+//		}
+//		if(keyLeft)
+//		{
+//		    model.getMario().left();
+//		}
+//		if(keySpace)
+//		{
+//        	model.getMario().jump();
+//		}
+//	}
+
 	void update()
 	{
-		if(keyRight)
-		{
-			model.getMario().right();
-		}
-		if(keyLeft)
-		{
-		    model.getMario().left();
-		}
-		if(keySpace)
-		{
-        	model.getMario().jump();
-		}
+		// Evaluate each possible action
+		double score_run = model.evaluateAction(Model.Action.run, 0);
+		double score_jump = model.evaluateAction(Model.Action.jump, 0);
+		double score_run_and_jump = model.evaluateAction(Model.Action.run_and_jump, 0);
+
+		// Do the best one
+		if(score_run_and_jump > score_jump && score_run_and_jump > score_run)
+			model.doAction(Model.Action.run_and_jump);
+		else if(score_jump > score_run)
+			model.doAction(Model.Action.jump);
+		else
+			model.doAction(Model.Action.run);
 	}
 }
