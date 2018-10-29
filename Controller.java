@@ -47,12 +47,12 @@ class Controller implements ActionListener, MouseListener, KeyListener
 		int right = Math.max(x1, x2);
 		int top = Math.min(y1, y2);
 		int bottom = Math.max(y1, y2);
-//		//uncomment to add some coinblocks wherever you click
+		//uncomment to add some coinblocks wherever you click
 //		Coinblock c = new Coinblock(left, top, model);
 //		model.sprites.add(c);
-//		//uncomment to add some bricks
+		//uncomment to add some bricks
 //		Brick b = new Brick(left, top, right - left, bottom - top, model);
-//		model.sprites.add(b)
+//		model.sprites.add(b);
 	}
 	public void mouseEntered(MouseEvent e) {    }
 	public void mouseExited(MouseEvent e) {    }
@@ -86,7 +86,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 	public void keyTyped(KeyEvent e)
 	{
 	}
-
+// uncomment for manual control
 //	void update()
 //	{
 //		if(keyRight)
@@ -102,7 +102,7 @@ class Controller implements ActionListener, MouseListener, KeyListener
 //        	model.getMario().jump();
 //		}
 //	}
-
+//AI controlled movement
 	void update()
 	{
 		// Evaluate each possible action

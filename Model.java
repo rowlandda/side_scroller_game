@@ -48,7 +48,7 @@ class Model
 		k = 5;
 		// Evaluate the state
 		if(depth >= d)
-			return getMario().x + 5000 * getMario().coins - 2 * getMario().jumps;
+			return getMario().x + 666000 * getMario().coins - 2 * getMario().jumps;
 
 		// Simulate the action
 		Model copy = new Model(this); // uses the copy constructor
